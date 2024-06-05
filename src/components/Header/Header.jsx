@@ -2,15 +2,9 @@ import React from "react";
 import style from "./Header.module.css";
 import Layout from "../Layout";
 import Logo from "./Logo";
+import Heading from "./Heading";
 import Search from "./Search";
 import Auth from "./Auth";
-
-const styleTitle = {
-  order: '1',
-  gridColumn: "1/4",
-  textAlign: "center",
-  fontSize: "22px",
-};
 
 export const Header = () => {
   return (
@@ -18,9 +12,9 @@ export const Header = () => {
       <Layout>
         <div className={style.gridContainer}>
           <Logo />
-          <h1 style={styleTitle}>Title</h1>
+          <Heading text="Главная" />
           <Search />
-          <Auth auth='Dima' />
+          <Auth auth={false} />
         </div>
       </Layout>
     </header>
