@@ -1,12 +1,12 @@
-import ComponentClass from "./components/componentClass/componentClass";
-import Button from "./components/Button";
+import React from "react";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <header className="App-header">
-      <Button text="Click me" />
-      <ComponentClass />
-    </header>
+    <>
+      <Header />
+      <main />
+    </>
   );
 }
 
