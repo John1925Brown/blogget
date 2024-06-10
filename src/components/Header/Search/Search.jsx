@@ -1,7 +1,8 @@
-import React from "react";
-import style from "./Search.module.css";
+/* eslint-disable max-len */
+import React from 'react';
+import style from './Search.module.css';
 
-export const Search = (props) => {
+export const Search = () => {
   return (
     <form className={style.form}>
       <input type="search" className={style.search} />
