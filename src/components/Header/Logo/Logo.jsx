@@ -1,11 +1,11 @@
 import React from 'react';
 import style from './Logo.module.css';
-import logo from './img/logo.svg';
+import { ReactComponent as Icon } from './img/logo.svg';
 
 export const Logo = () => {
   return (
     <a className={style.link} href="/">
-      <img className={style.logo} src={logo} alt="Logo Blogget" />
+      <Icon className={style.logo} alt="Logo Blogget" />
     </a>
   );
 };

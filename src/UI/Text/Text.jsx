@@ -2,22 +2,24 @@ import classNames from 'classnames';
 import style from './Text.module.css';
 import PropTypes from 'prop-types';
 
-export const Text = (prop) => {
+export const Text = (props) => {
   const {
     As = 'span',
     color = 'black',
     size,
     tsize,
     dsize,
+    fweight,
     className,
     children,
     href,
     center,
-  } = prop;
+  } = props;
 
   const classes = classNames(
     className,
     style[color],
+    style[fweight],
     { [style.center]: center },
     { [style[`fs${size}`]]: size },
     { [style[`fst${tsize}`]]: tsize },
@@ -31,17 +33,19 @@ export const Text = (prop) => {
   );
 };
 
-Text.PropTypes = {
+Text.propTypes = {
   As: PropTypes.string,
   color: PropTypes.string,
   size: PropTypes.number,
   tsize: PropTypes.number,
   dsize: PropTypes.number,
+  fweight: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object,
     PropTypes.array,
+    PropTypes.number,
   ]),
   href: PropTypes.string,
   center: PropTypes.bool,
