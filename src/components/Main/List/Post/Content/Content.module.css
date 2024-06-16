@@ -54,9 +54,3 @@
     color: #2d2d2d;
   }
 }
-
-@media (min-width: 768px) {
-  .linkPost {
-    font-size: 32px;
-  }
-}
