@@ -22,10 +22,6 @@ export const Tabs = () => {
   const [isDropDown, setIsDropdown] = useState(true);
   const [selectedItem, setSelectedItem] = useState('');
 
-  const handleBtnValue = (itemValue) => {
-    setSelectedItem(itemValue);
-  };
-
   const handleResize = () => {
     if (document.documentElement.clientWidth < 768) {
       setIsDropdown(true);
@@ -61,27 +57,23 @@ export const Tabs = () => {
       )}
 
       {(isDropdownOpen || !isDropDown) && (
-        <ul
-          className={style.list}
-          onClick={() => {
-            setIsDropdownOpen(false);
-          }}
-        >
+        <Text As="ul" className={style.list}>
           {LIST.map(({ value, id, Icon }) => (
-            <Text className={style.item} key={id}>
-              <Text
-                As="button"
-                className={style.btn}
-                onClick={() => {
-                  handleBtnValue(value);
-                }}
-              >
+            <li
+              className={style.item}
+              key={id}
+              onClick={() => {
+                setSelectedItem(value);
+                setIsDropdownOpen(!isDropdownOpen);
+              }}
+            >
+              <button className={style.btn}>
                 {value}
                 {Icon && <Icon width={30} height={30} />}
-              </Text>
-            </Text>
+              </button>
+            </li>
           ))}
-        </ul>
+        </Text>
       )}
     </div>
   );
