@@ -68,7 +68,7 @@ export const Tabs = () => {
           }}
         >
           {LIST.map(({ value, id, Icon }) => (
-            <Text className={style.item} key={id}>
+            <Text As="li" className={style.item} key={id}>
               <Text
                 As="button"
                 className={style.btn}
