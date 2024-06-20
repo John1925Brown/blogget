@@ -5,10 +5,15 @@ import { ReactComponent as LoginIcon } from './img/login.svg';
 import { Text } from '../../../UI/Text';
 import { urlAuth } from '../../../api/auth';
 import { URL_API } from '../../../api/const';
+import { Logout } from './Logout/Logout';
 
 export const Auth = ({ token }) => {
   const [auth, setAuth] = useState({});
+  const [isLogoutShow, setIsLogoutShow] = useState(false);
 
+  const logoutToggle = () => {
+    setIsLogoutShow(!isLogoutShow);
+  };
   useEffect(() => {
     if (!token) return;
 
@@ -31,7 +36,12 @@ export const Auth = ({ token }) => {
   return (
     <div className={style.container}>
       {auth.name ? (
-        <button className={style.btn}>
+        <button
+          className={style.btn}
+          onClick={() => {
+            logoutToggle();
+          }}
+        >
           <img
             src={auth.img}
             title={auth.name}
@@ -44,6 +54,7 @@ export const Auth = ({ token }) => {
           <LoginIcon className={style.svg} />
         </Text>
       )}
+      {isLogoutShow ? <Logout /> : null}
     </div>
   );
 };
