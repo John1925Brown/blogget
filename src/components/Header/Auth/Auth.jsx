@@ -7,7 +7,7 @@ import { urlAuth } from '../../../api/auth';
 import { URL_API } from '../../../api/const';
 import { Logout } from './Logout/Logout';
 
-export const Auth = ({ token }) => {
+export const Auth = ({ token, delToken }) => {
   const [auth, setAuth] = useState({});
   const [isLogoutShow, setIsLogoutShow] = useState(false);
 
@@ -54,11 +54,12 @@ export const Auth = ({ token }) => {
           <LoginIcon className={style.svg} />
         </Text>
       )}
-      {isLogoutShow ? <Logout /> : null}
+      {isLogoutShow ? <Logout delToken={delToken} /> : null}
     </div>
   );
 };
 
 Auth.propTypes = {
   token: PropTypes.string,
+  delToken: PropTypes.func,
 };
