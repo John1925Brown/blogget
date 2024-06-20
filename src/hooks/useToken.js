@@ -10,6 +10,14 @@ export const useToken = (state) => {
     location.pathname = '';
   };
 
+  const checkResponse = (response) => {
+    if (response.status === 401) {
+      console.error(`Error: response status: ${response.status}`);
+      localStorage.removeItem('bearer');
+      setToken(null);
+    }
+  };
+
   useEffect(() => {
     if (location.pathname.includes('/auth')) {
       const token = new URLSearchParams(location.hash.substring(1)).get(
@@ -29,5 +37,5 @@ export const useToken = (state) => {
     }
   }, [token]);
 
-  return [token, delToken];
+  return [token, delToken, checkResponse];
 };

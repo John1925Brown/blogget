@@ -7,7 +7,7 @@ import { urlAuth } from '../../../api/auth';
 import { URL_API } from '../../../api/const';
 import { Logout } from './Logout/Logout';
 
-export const Auth = ({ token, delToken }) => {
+export const Auth = ({ token, delToken, checkResponse }) => {
   const [auth, setAuth] = useState({});
   const [isLogoutShow, setIsLogoutShow] = useState(false);
 
@@ -22,7 +22,10 @@ export const Auth = ({ token, delToken }) => {
         Authorization: `bearer ${token}`,
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        checkResponse(response);
+        return response.json();
+      })
       .then(({ name, icon_img: iconImg }) => {
         const img = iconImg.replace(/\?.*$/, '');
         setAuth({ name, img });
@@ -62,4 +65,5 @@ export const Auth = ({ token, delToken }) => {
 Auth.propTypes = {
   token: PropTypes.string,
   delToken: PropTypes.func,
+  checkResponse: PropTypes.func,
 };

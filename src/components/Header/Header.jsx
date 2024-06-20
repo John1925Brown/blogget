@@ -7,7 +7,7 @@ import Search from './Search';
 import Auth from './Auth';
 import PropTypes from 'prop-types';
 
-export const Header = ({ token, delToken }) => {
+export const Header = ({ token, delToken, checkResponse }) => {
   return (
     <header className={style.header}>
       <Layout>
@@ -15,7 +15,11 @@ export const Header = ({ token, delToken }) => {
           <Logo />
           <Heading text="Главная" />
           <Search />
-          <Auth token={token} delToken={delToken} />
+          <Auth
+            token={token}
+            delToken={delToken}
+            checkResponse={checkResponse}
+          />
         </div>
       </Layout>
     </header>
@@ -25,4 +29,5 @@ export const Header = ({ token, delToken }) => {
 Header.propTypes = {
   token: PropTypes.string,
   delToken: PropTypes.func,
+  checkResponse: PropTypes.func,
 };
