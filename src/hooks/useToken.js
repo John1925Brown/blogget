@@ -13,8 +13,7 @@ export const useToken = (state) => {
   const checkResponse = (response) => {
     if (response.status === 401) {
       console.error(`Error: response status: ${response.status}`);
-      localStorage.removeItem('bearer');
-      setToken(null);
+      delToken();
     }
   };
 

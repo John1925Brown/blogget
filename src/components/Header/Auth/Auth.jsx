@@ -6,8 +6,9 @@ import { Text } from '../../../UI/Text';
 import { urlAuth } from '../../../api/auth';
 import { URL_API } from '../../../api/const';
 import { Logout } from './Logout/Logout';
+import { useFetchAPI } from '../../../hooks/useFetchAPI';
 
-export const Auth = ({ token, delToken, checkResponse }) => {
+export const Auth = ({ token, delToken }) => {
   const [auth, setAuth] = useState({});
   const [isLogoutShow, setIsLogoutShow] = useState(false);
 
@@ -17,15 +18,7 @@ export const Auth = ({ token, delToken, checkResponse }) => {
   useEffect(() => {
     if (!token) return;
 
-    fetch(`${URL_API}/api/v1/me`, {
-      headers: {
-        Authorization: `bearer ${token}`,
-      },
-    })
-      .then((response) => {
-        checkResponse(response);
-        return response.json();
-      })
+    useFetchAPI(URL_API, token)
       .then(({ name, icon_img: iconImg }) => {
         const img = iconImg.replace(/\?.*$/, '');
         setAuth({ name, img });
@@ -65,5 +58,4 @@ export const Auth = ({ token, delToken, checkResponse }) => {
 Auth.propTypes = {
   token: PropTypes.string,
   delToken: PropTypes.func,
-  checkResponse: PropTypes.func,
 };
