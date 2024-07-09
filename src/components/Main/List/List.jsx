@@ -1,9 +1,13 @@
-import React from 'react';
+import { useContext } from 'react';
 import style from './List.module.css';
 import Post from './Post';
 import { generateRandomId } from '../../../utils/generateRandomId';
+import { bestPostsContext } from '../../../context/bestPostContext';
 
 export const List = () => {
+  const { bestPosts } = useContext(bestPostsContext);
+  console.log(bestPosts[0]);
+
   const postsData = [
     {
       thumbnail: '',
@@ -38,6 +42,7 @@ export const List = () => {
       id: generateRandomId(),
     },
   ];
+
   return (
     <ul className={style.list}>
       {postsData.map((postData) => (

@@ -4,7 +4,7 @@ import { tokenContext } from '../context/tokenContext';
 
 export const useAuth = () => {
   const { token, delToken } = useContext(tokenContext);
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState([]);
 
   useEffect(() => {
     if (!token) return;
