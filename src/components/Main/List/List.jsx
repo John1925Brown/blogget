@@ -6,7 +6,6 @@ import { bestPostsContext } from '../../../context/bestPostContext';
 
 export const List = () => {
   const { bestPosts } = useContext(bestPostsContext);
-  console.log(bestPosts);
 
   const postsData = [];
 
