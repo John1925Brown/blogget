@@ -9,10 +9,10 @@ import Time from './Time';
 import Delete from './Delete';
 
 export const Post = ({ postData }) => {
-  const { title, author, ups, date } = postData;
+  const { title, author, ups, date, thumbnail } = postData;
   return (
     <li className={style.post}>
-      <Photo title={title} />
+      <Photo thumbnail={thumbnail} />
       <Content title={title} author={author} />
       <Rating ups={ups} />
       <Time date={date} />
