@@ -9,17 +9,23 @@ export const Modal = ({ author, markdown, title, closeModal }) => {
   const overlayRef = useRef(null);
 
   const handleClick = (e) => {
-    const target = e.target;
+    if (e.target === overlayRef.current) {
+      closeModal();
+    }
+  };
 
-    if (target === overlayRef.current) {
+  const handleEscapeClose = (e) => {
+    if (e.key === 'Escape') {
       closeModal();
     }
   };
 
   useEffect(() => {
     document.addEventListener('click', handleClick);
+    document.addEventListener('keydown', handleEscapeClose);
     return () => {
       document.removeEventListener('click', handleClick);
+      document.removeEventListener('keydown', handleEscapeClose);
     };
   }, []);
 
@@ -46,7 +52,12 @@ export const Modal = ({ author, markdown, title, closeModal }) => {
 
         <p className={style.author}>{author}</p>
 
-        <button className={style.close}>
+        <button
+          className={style.close}
+          onClick={() => {
+            closeModal();
+          }}
+        >
           <CloseIcon />
         </button>
       </div>
