@@ -7,7 +7,6 @@ import { Modal } from '../../../../Modal/Modal';
 export const Content = ({ title, author, markdown }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(markdown);
   return (
     <div className={style.content}>
       <Text As="h2" className={style.title}>
@@ -37,7 +36,14 @@ export const Content = ({ title, author, markdown }) => {
         {author}
       </Text>
       {isModalOpen && (
-        <Modal markdown={markdown} title={title} author={author} />
+        <Modal
+          markdown={markdown}
+          title={title}
+          author={author}
+          closeModal={() => {
+            setIsModalOpen(false);
+          }}
+        />
       )}
     </div>
   );
