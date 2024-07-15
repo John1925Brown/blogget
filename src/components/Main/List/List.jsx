@@ -17,6 +17,7 @@ export const List = () => {
       ups: elem.data.ups,
       date: elem.data.created_utc,
       id: generateRandomId(),
+      selftext: elem.data.selftext,
     };
 
     postsData.push(newPost);
