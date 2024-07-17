@@ -6,11 +6,10 @@ import Time from '../../Main/List/Post/Time';
 
 export const Comments = ({ comments }) => {
   console.log(comments);
-  return !comments ? (
-    'Нет комментариев'
-  ) : (
+
+  return (
     <ul className={style.list}>
-      {comments.map((item) => {
+      {comments.map((item) => (
         <li key={item.id} className={style.item}>
           <Text As="h3" className={style.author} size={18} tsize={22}>
             {item.value}
@@ -19,8 +18,8 @@ export const Comments = ({ comments }) => {
             {item.body}
           </Text>
           <Time date={item.created_utc} />
-        </li>;
-      })}
+        </li>
+      ))}
     </ul>
   );
 };
