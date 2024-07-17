@@ -1,12 +1,9 @@
-import React from 'react';
 import style from './Comments.module.css';
 import { Text } from '../../../UI/Text';
 import PropTypes from 'prop-types';
 import Time from '../../Main/List/Post/Time';
 
 export const Comments = ({ comments }) => {
-  console.log(comments);
-
   return (
     <ul className={style.list}>
       {comments.map((item) => (

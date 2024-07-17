@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import style from './FormComment.module.css';
 import { Text } from '../../../UI/Text';
 import { authContext } from '../../../context/authContext';
@@ -6,6 +6,11 @@ import { authContext } from '../../../context/authContext';
 export const FormComment = () => {
   const formCommentRef = useRef(null);
   const { auth } = useContext(authContext);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const handleFormOpen = () => {
+    setIsFormOpen(!isFormOpen);
+  };
 
   const changeFromText = (e) => {
     e.preventDefault();
@@ -14,7 +19,13 @@ export const FormComment = () => {
     }
   };
 
-  return (
+  useEffect(() => {
+    if (isFormOpen && formCommentRef.current) {
+      formCommentRef.current.focus();
+    }
+  });
+
+  return isFormOpen ? (
     <form className={style.form} onSubmit={changeFromText}>
       <Text As="h3" size={14} tsize={18}>
         {auth.name}
@@ -24,5 +35,14 @@ export const FormComment = () => {
         Отправить
       </button>
     </form>
+  ) : (
+    <button
+      className={style.btn}
+      onClick={() => {
+        handleFormOpen();
+      }}
+    >
+      Написать комментарий
+    </button>
   );
 };
