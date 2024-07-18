@@ -1,12 +1,10 @@
 import { useContext } from 'react';
 import style from './List.module.css';
 import Post from './Post';
-import { generateRandomId } from '../../../utils/generateRandomId';
 import { bestPostsContext } from '../../../context/bestPostContext';
 
 export const List = () => {
   const { bestPosts } = useContext(bestPostsContext);
-  console.log(bestPosts);
 
   const postsData = [];
 
@@ -17,7 +15,8 @@ export const List = () => {
       author: elem.data.author,
       ups: elem.data.ups,
       date: elem.data.created_utc,
-      id: generateRandomId(),
+      id: elem.data.id,
+      selftext: elem.data.selftext,
     };
 
     postsData.push(newPost);
