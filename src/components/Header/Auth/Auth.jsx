@@ -10,9 +10,9 @@ import { deleteToken } from '../../../store';
 import { useDispatch } from 'react-redux';
 
 export const Auth = () => {
-  const dispatch = useDispatch();
   const [isLogoutShow, setIsLogoutShow] = useState(false);
   const { auth, clearAuth } = useContext(authContext);
+  const dispatch = useDispatch();
 
   const logoutToggle = () => {
     setIsLogoutShow(!isLogoutShow);
@@ -44,14 +44,7 @@ export const Auth = () => {
           <LoginIcon className={style.svg} />
         </Text>
       )}
-      {isLogoutShow ? (
-        <Logout
-          onClick={() => {
-            logOut();
-          }}
-          delToken={dispatch(deleteToken)}
-        />
-      ) : null}
+      {isLogoutShow ? <Logout logOut={logOut} /> : null}
     </div>
   );
 };

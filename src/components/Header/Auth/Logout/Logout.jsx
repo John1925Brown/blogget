@@ -2,12 +2,12 @@ import React from 'react';
 import style from './Logout.module.css';
 import PropTypes from 'prop-types';
 
-export const Logout = ({ delToken }) => {
+export const Logout = ({ logOut }) => {
   return (
     <button
       className={style.logout}
       onClick={() => {
-        delToken();
+        logOut();
       }}
     >
       Выйти
@@ -16,5 +16,5 @@ export const Logout = ({ delToken }) => {
 };
 
 Logout.propTypes = {
-  delToken: PropTypes.func,
+  logOut: PropTypes.func,
 };

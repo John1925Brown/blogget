@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteToken } from '../store';
 
 export const useAuth = () => {
+  const [auth, setAuth] = useState([]);
   const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
-  console.log(token);
-  const [auth, setAuth] = useState([]);
 
   useEffect(() => {
     if (!token) return;
@@ -30,7 +29,7 @@ export const useAuth = () => {
       .catch((err) => {
         console.error(err);
         setAuth({});
-        dispatch(deleteToken(token));
+        dispatch(deleteToken());
       });
   }, [token]);
 

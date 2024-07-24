@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateComment } from '../../../store/index';
 
 export const FormComment = () => {
+  const { auth } = useContext(authContext);
   const value = useSelector((state) => state.comment);
   const dispatch = useDispatch();
   const formCommentRef = useRef(null);
-  const { auth } = useContext(authContext);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleFormOpen = () => {
@@ -22,7 +22,6 @@ export const FormComment = () => {
 
   const changeFromText = (e) => {
     e.preventDefault();
-    console.log(value);
   };
 
   useEffect(() => {
