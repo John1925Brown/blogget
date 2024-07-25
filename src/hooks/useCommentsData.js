@@ -8,7 +8,6 @@ export const useCommentsData = (id) => {
 
   useEffect(() => {
     if (!token) return;
-    console.log(token);
 
     fetch(`${URL_API}/comments/${id}`, {
       headers: {

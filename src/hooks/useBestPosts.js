@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 export const useBestPosts = () => {
   const token = useSelector((state) => state.token);
-  console.log(token);
   const [bestPosts, setBestPosts] = useState([]);
 
   useEffect(() => {

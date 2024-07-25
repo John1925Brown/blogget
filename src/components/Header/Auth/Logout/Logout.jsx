@@ -1,4 +1,3 @@
-import React from 'react';
 import style from './Logout.module.css';
 import PropTypes from 'prop-types';
 

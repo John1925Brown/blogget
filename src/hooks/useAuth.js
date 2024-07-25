@@ -33,7 +33,10 @@ export const useAuth = () => {
       });
   }, [token]);
 
-  const clearAuth = () => setAuth({});
+  const clearAuth = () => {
+    location.href = 'http://localhost:3000/';
+    setAuth({});
+  };
 
   return [auth, clearAuth];
 };
