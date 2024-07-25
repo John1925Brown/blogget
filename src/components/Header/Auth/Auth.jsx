@@ -5,23 +5,23 @@ import { ReactComponent as LoginIcon } from './img/login.svg';
 import { Text } from '../../../UI/Text';
 import { urlAuth } from '../../../api/auth';
 import { Logout } from './Logout/Logout';
-import { tokenContext } from '../../../context/tokenContext';
 import { authContext } from '../../../context/authContext';
+import { deleteToken } from '../../../store';
+import { useDispatch } from 'react-redux';
 
 export const Auth = () => {
-  const { delToken } = useContext(tokenContext);
   const [isLogoutShow, setIsLogoutShow] = useState(false);
   const { auth, clearAuth } = useContext(authContext);
+  const dispatch = useDispatch();
 
   const logoutToggle = () => {
     setIsLogoutShow(!isLogoutShow);
   };
 
   const logOut = () => {
-    delToken();
+    dispatch(deleteToken());
     clearAuth();
   };
-
 
   return (
     <div className={style.container}>
@@ -44,14 +44,7 @@ export const Auth = () => {
           <LoginIcon className={style.svg} />
         </Text>
       )}
-      {isLogoutShow ? (
-        <Logout
-          onClick={() => {
-            logOut();
-          }}
-          delToken={delToken}
-        />
-      ) : null}
+      {isLogoutShow ? <Logout logOut={logOut} /> : null}
     </div>
   );
 };

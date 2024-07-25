@@ -6,6 +6,7 @@ import { Modal } from '../../../../Modal/Modal';
 
 export const Content = ({ title, author, markdown, id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const token = localStorage.getItem('bearer');
 
   return (
     <div className={style.content}>
@@ -16,7 +17,7 @@ export const Content = ({ title, author, markdown, id }) => {
           size={18}
           tsize={24}
           className={style.linkPost}
-          href="#post"
+          href={`#access_token=${token}`}
           onClick={() => {
             setIsModalOpen(true);
           }}
