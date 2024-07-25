@@ -6,7 +6,7 @@ import { Text } from '../../../UI/Text';
 import { urlAuth } from '../../../api/auth';
 import { Logout } from './Logout/Logout';
 import { authContext } from '../../../context/authContext';
-import { deleteToken } from '../../../store';
+import { deleteToken } from '../../../store/tokenReducer.js';
 import { useDispatch } from 'react-redux';
 
 export const Auth = () => {

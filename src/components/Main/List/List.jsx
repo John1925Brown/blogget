@@ -1,14 +1,14 @@
 import { useContext } from 'react';
 import style from './List.module.css';
 import Post from './Post';
-import { bestPostsContext } from '../../../context/bestPostContext';
+import { postsDataContext } from '../../../context/postDataContext';
 
 export const List = () => {
-  const { bestPosts } = useContext(bestPostsContext);
+  const { postData } = useContext(postsDataContext);
 
   const postsData = [];
 
-  bestPosts.map((elem) => {
+  postData.map((elem) => {
     const newPost = {
       thumbnail: elem.data.thumbnail,
       title: elem.data.title,

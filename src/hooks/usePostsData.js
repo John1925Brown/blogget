@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { URL_API } from '../api/const';
 import { useSelector } from 'react-redux';
 
-export const useBestPosts = () => {
-  const token = useSelector((state) => state.token);
-  const [bestPosts, setBestPosts] = useState([]);
+export const usePostsData = () => {
+  const token = useSelector((state) => state.token.token);
+  const [postsData, setPostsData] = useState([]);
 
   useEffect(() => {
     if (!token) return;
@@ -22,12 +22,12 @@ export const useBestPosts = () => {
         return response.json();
       })
       .then(({ data }) => {
-        setBestPosts(data.children);
+        setPostsData(data.children);
       })
       .catch((error) => {
         console.error('Error fetch:', error);
       });
   }, [token]);
 
-  return [bestPosts];
+  return [postsData];
 };
