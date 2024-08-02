@@ -18,6 +18,7 @@ export const Post = ({ postData }) => {
     selftext: markdown,
     id,
   } = postData;
+
   return (
     <li className={style.post}>
       <Photo thumbnail={thumbnail} />

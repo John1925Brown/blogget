@@ -5,11 +5,14 @@ import { commentReducer } from './commentReducer';
 import { tokenMiddleware } from './tokenReducer';
 import { thunk } from 'redux-thunk';
 import { authReducer } from './auth/authReducer';
+import { postsReducer } from './postsData/postsDataReducer';
 
 const rootReducer = combineReducers({
   token: tokenReducer,
   comment: commentReducer,
   auth: authReducer,
+  posts: postsReducer,
+  comments: commentReducer,
 });
 
 export const store = createStore(

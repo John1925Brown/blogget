@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Text } from '../../../../../UI/Text/Text';
 import { Modal } from '../../../../Modal/Modal';
 
-export const Content = ({ title, author, markdown, id }) => {
+export const Content = ({ title, author, id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const token = localStorage.getItem('bearer');
 
@@ -51,6 +51,5 @@ export const Content = ({ title, author, markdown, id }) => {
 Content.propTypes = {
   title: PropTypes.string,
   author: PropTypes.string,
-  markdown: PropTypes.string,
   id: PropTypes.string,
 };

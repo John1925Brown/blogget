@@ -20,7 +20,7 @@ export const authRequestError = (err) => ({
 
 export const authLogout = (err) => ({
   type: AUTH_LOGOUT,
-  error: '',
+  err: '',
 });
 
 export const authRequestAsinc = () => (dispatch, getState) => {

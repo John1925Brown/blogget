@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 import { URL_API } from '../api/const';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { commentsRequestAsync } from '../store/comments/action';
 
 export const useCommentsData = (id) => {
   const token = useSelector((state) => state.token.token);
   const [comments, setCommentsData] = useState([]);
   const [post, setPost] = useState([]);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!token) return;
+    console.log(id);
+
+    dispatch(commentsRequestAsync(id));
 
     fetch(`${URL_API}/comments/${id}`, {
       headers: {
