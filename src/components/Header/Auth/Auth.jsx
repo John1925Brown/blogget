@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import style from './Auth.module.css';
-import AuthLoader from './AuthLoader';
 import { ReactComponent as LoginIcon } from './img/login.svg';
 import { Text } from '../../../UI/Text';
 import { urlAuth } from '../../../api/auth';
@@ -8,6 +7,7 @@ import { Logout } from './Logout/Logout';
 import { deleteToken } from '../../../store/tokenReducer.js';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../../../hooks/useAuth.js';
+import { AuthLoader } from '../../../UI/AuthLoader/AuthLoader.jsx';
 
 export const Auth = () => {
   const [isLogoutShow, setIsLogoutShow] = useState(false);

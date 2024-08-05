@@ -7,9 +7,10 @@ export const COMMENTS_REQUEST_ERROR = 'COMMENTS_REQUEST_ERROR';
 
 export const commentsRequest = (id) => ({ type: COMMENTS_REQUEST, id });
 
-export const commentsRequestSuccess = (data) => ({
+export const commentsRequestSuccess = (comments, post) => ({
   type: COMMENTS_REQUEST_SUCCESS,
-  data,
+  comments,
+  post,
 });
 
 export const commentsRequestError = (err) => ({
@@ -17,15 +18,11 @@ export const commentsRequestError = (err) => ({
   err,
 });
 
-export const commentsRequestAsync = () => (dispatch, getState, id) => {
+export const commentsRequestAsync = (id) => (dispatch, getState) => {
   const token = getState().token.token;
   if (!token) return;
 
-  console.log(id);
-
   dispatch(commentsRequest(id));
-
-  console.log(id);
 
   axios(`${URL_API}/comments/${id}`, {
     headers: {
@@ -33,21 +30,21 @@ export const commentsRequestAsync = () => (dispatch, getState, id) => {
     },
   })
     .then(
-      ([
-        {
-          data: {
-            children: [{ data: post }],
+      ({
+        data: [
+          {
+            data: {
+              children: [{ data: post }],
+            },
           },
-        },
-        {
-          data: { children },
-        },
-      ]) => {
+          {
+            data: { children },
+          },
+        ],
+      }) => {
         const comments = children.map((item) => item.data);
-        console.log(children);
-        console.log(comments);
 
-        dispatch(commentsRequestSuccess(comments));
+        dispatch(commentsRequestSuccess(comments, post));
       }
     )
     .catch((err) => {

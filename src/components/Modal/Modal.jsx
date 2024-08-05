@@ -7,16 +7,11 @@ import { useEffect, useRef } from 'react';
 import { useCommentsData } from '../../hooks/useCommentsData';
 import { FormComment } from './FormComment/FormComment';
 import { Comments } from './Comments/Comments';
-import { useDispatch } from 'react-redux';
-import { commentsRequestAsync } from '../../store/comments/action';
 
 export const Modal = ({ closeModal, id }) => {
   const overlayRef = useRef(null);
-  const dispatch = useDispatch();
 
   const [post, comments] = useCommentsData(id);
-
-  dispatch(commentsRequestAsync(id));
 
   const handleClick = (e) => {
     if (e.target === overlayRef.current) {

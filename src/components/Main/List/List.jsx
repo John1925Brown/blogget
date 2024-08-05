@@ -1,13 +1,15 @@
 import style from './List.module.css';
 import Post from './Post';
 import { usePostsData } from '../../../hooks/usePostsData';
+import { AuthLoader } from '../../../UI/AuthLoader/AuthLoader';
 
 export const List = () => {
-  const [postData] = usePostsData();
+  const [posts, loading] = usePostsData();
+
   const postsData = [];
 
-  if (postData.data.children) {
-    postData.data.children.map((elem) => {
+  if (posts.data.children) {
+    posts.data.children.map((elem) => {
       const newPost = {
         thumbnail: elem.data.thumbnail,
         title: elem.data.title,
@@ -22,10 +24,16 @@ export const List = () => {
   }
 
   return (
-    <ul className={style.list}>
-      {postsData.map((postData) => (
-        <Post key={postData.id} postData={postData} />
-      ))}
-    </ul>
+    <>
+      {loading ? (
+        <AuthLoader />
+      ) : (
+        <ul className={style.list}>
+          {postsData.map((postData) => (
+            <Post key={postData.id} postData={postData} />
+          ))}
+        </ul>
+      )}
+    </>
   );
 };

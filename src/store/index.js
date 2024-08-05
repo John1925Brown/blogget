@@ -6,13 +6,14 @@ import { tokenMiddleware } from './tokenReducer';
 import { thunk } from 'redux-thunk';
 import { authReducer } from './auth/authReducer';
 import { postsReducer } from './postsData/postsDataReducer';
+import { commentsReducer } from './comments/commentsReducer';
 
 const rootReducer = combineReducers({
   token: tokenReducer,
   comment: commentReducer,
   auth: authReducer,
   posts: postsReducer,
-  comments: commentReducer,
+  commentsData: commentsReducer,
 });
 
 export const store = createStore(
