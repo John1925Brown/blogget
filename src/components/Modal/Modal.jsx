@@ -10,6 +10,7 @@ import { Comments } from './Comments/Comments';
 
 export const Modal = ({ closeModal, id }) => {
   const overlayRef = useRef(null);
+
   const [post, comments] = useCommentsData(id);
 
   const handleClick = (e) => {
