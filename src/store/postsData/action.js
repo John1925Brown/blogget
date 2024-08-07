@@ -10,6 +10,7 @@ export const postsRequest = () => ({ type: POSTS_REQUEST });
 export const postsRequestSuccess = (data) => ({
   type: POSTS_REQUEST_SUCCESS,
   data,
+  after: data.after,
 });
 
 export const postsRequestError = (err) => ({
@@ -19,17 +20,19 @@ export const postsRequestError = (err) => ({
 
 export const postsRequestAsync = () => (dispatch, getState) => {
   const token = getState().token.token;
+  const after = getState().posts.after;
   if (!token) return;
 
   dispatch(postsRequest());
 
-  axios(`${URL_API}/best`, {
+  axios(`${URL_API}/best?limit=10${after ? `&after=${after}` : ''}`, {
     headers: {
       Authorization: `bearer ${token}`,
     },
   })
-    .then(({ data: { data } }) => {
-      dispatch(postsRequestSuccess(data));
+    .then(({ data }) => {
+      console.log(data);
+      dispatch(postsRequestSuccess(data.data));
     })
     .catch((err) => {
       console.error('Error fetch:', err);

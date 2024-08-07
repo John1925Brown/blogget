@@ -6,8 +6,9 @@ import {
 
 const inititalState = {
   loading: false,
-  data: {},
+  data: [],
   error: '',
+  after: '',
 };
 
 export const postsReducer = (state = inititalState, action) => {
@@ -16,7 +17,13 @@ export const postsReducer = (state = inititalState, action) => {
       return { ...state, error: '', loading: true };
 
     case POSTS_REQUEST_SUCCESS:
-      return { ...state, data: action.data, error: '', loading: false };
+      return {
+        ...state,
+        data: action.data,
+        error: '',
+        loading: false,
+        after: action.after,
+      };
 
     case POSTS_REQUEST_ERROR:
       return { ...state, error: action.error, loading: false };
